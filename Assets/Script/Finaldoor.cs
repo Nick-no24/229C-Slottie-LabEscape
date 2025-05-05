@@ -1,10 +1,13 @@
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class FinalDoor : MonoBehaviour
 {
     public GameObject[] door;
      private bool onConsole = false;
     private bool acivated = false;
+    public GameObject InterfaceUi;
+    public GameObject Interract;
     void Update()
     {
         if (onConsole && Input.GetKeyDown(KeyCode.E) && KeyItemManager.instance != null && KeyItemManager.instance.GetGemCount() >= KeyItemManager.instance.gemRequired && !acivated)
@@ -16,13 +19,18 @@ public class FinalDoor : MonoBehaviour
             }
              acivated = true;
         }
+        if (onConsole && Input.GetKeyDown(KeyCode.E) && KeyItemManager.instance != null && KeyItemManager.instance.GetGemCount() < KeyItemManager.instance.gemRequired )
+        {
+            InterfaceUi.SetActive(true);
+        }
     }
    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !acivated)
         {
+            Interract.SetActive(true);
             onConsole = true;
         }
     }
@@ -32,6 +40,8 @@ public class FinalDoor : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             onConsole = false;
+            Interract.SetActive(false);
+             InterfaceUi.SetActive(false);
         }
     }
 }
