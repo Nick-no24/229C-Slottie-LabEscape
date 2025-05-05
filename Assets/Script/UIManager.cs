@@ -5,8 +5,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    public Image[] gemIcons;         // 3 Image ไอคอน
-    public Sprite gemCollectedIcon;  // รูป gem ที่เก็บแล้ว
+    public Image[] gemIcons;         
+    public Sprite gemCollectedIcon;  
     private int gemCount = 0;
 
     void Awake()

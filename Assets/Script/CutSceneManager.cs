@@ -9,6 +9,7 @@ public class CutsceneController : MonoBehaviour
     public GameObject GameUi;
 
     public Rigidbody2D characterRb;
+    public Animator anim;
     public MonoBehaviour playerControllerScript;
 
 
@@ -29,7 +30,7 @@ public class CutsceneController : MonoBehaviour
         if (walking)
         {
             character.position = Vector3.MoveTowards(character.position, walkTarget.position, walkSpeed * Time.deltaTime);
-
+            anim.Play("Run_Animation");
             if (Vector3.Distance(character.position, walkTarget.position) < 0.1f)
             {
                 walking = false;
