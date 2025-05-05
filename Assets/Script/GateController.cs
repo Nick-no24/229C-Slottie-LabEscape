@@ -5,7 +5,7 @@ public class GateController : MonoBehaviour
     public GameObject[] barricade; 
     private bool onConsole = false;
     private bool acivated = false;
-
+    public GameObject Interract;
     void Update()
     {
         if (onConsole && Input.GetKeyDown(KeyCode.E) && !acivated)
@@ -21,9 +21,11 @@ public class GateController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !acivated)
         {
             onConsole = true;
+            
+            Interract.SetActive(true);
         }
     }
 
@@ -32,6 +34,7 @@ public class GateController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             onConsole = false;
+            Interract.SetActive(false);
         }
     }
 
